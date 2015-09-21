@@ -14,6 +14,12 @@ BOT_NAME = 'ZBJ'
 SPIDER_MODULES = ['ZBJ.spiders']
 NEWSPIDER_MODULE = 'ZBJ.spiders'
 
+ITEM_PIPELINES = ['ZBJ.pipelines.MongoDBPipeline',]
+
+MONGODB_SERVER = "localhost"
+MONGODB_PORT = 27017
+MONGODB_DB = "ZBJ"
+MONGODB_COLLECTION = "zbjbaidu"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ZBJ (+http://www.yourdomain.com)'
