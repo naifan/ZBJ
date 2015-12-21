@@ -14,7 +14,10 @@ BOT_NAME = 'ZBJ'
 SPIDER_MODULES = ['ZBJ.spiders']
 NEWSPIDER_MODULE = 'ZBJ.spiders'
 
-ITEM_PIPELINES = ['ZBJ.pipelines.MongoDBPipeline',]
+ITEM_PIPELINES = {
+    #'ZBJ.pipelines.MongoDBPipeline',
+    'ZBJ.pipelines.JsonWithEncodingPipeline': 1,
+}
 
 MONGODB_SERVER = "localhost"
 MONGODB_PORT = 27017
@@ -30,7 +33,9 @@ MONGODB_COLLECTION = "zbjbaidu"
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY=3
+
+DOWNLOAD_DELAY=5
+#LOG_LEVEL = 'INFO'
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN=16
 #CONCURRENT_REQUESTS_PER_IP=16
