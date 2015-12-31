@@ -3,29 +3,57 @@
 from scrapy import Spider
 from scrapy.selector import Selector
 from scrapy.http import Request, FormRequest
+from scrapy.utils.url import urljoin_rfc
+from scrapy.utils.response import get_base_url 
 
 from ZBJ.items import ZBJItem
-from loginform import fill_login_form
+#from loginform import fill_login_form
+import urllib
+import os
+import subprocess
 
 class ZBJSpider(Spider):
     name = "ZBJ"
     allowed_domins = ["zhubajie.com"]
-    start_urls = ["http://task.zhubajie.com/success/?kw=百度知道"]
+    start_urls = ["http://task.zbj.com/success/?kw=百度知道"]
 
-    login_url = 'https://login.zhubajie.com/login'
+    login_url = 'https://login.zbj.com/login'
     login_user = ''
     login_password = ''
 
-    def start_request(self):
+    def start_requests(self):
+        self.logger.info('start_requests')
         yield Request(self.login_url, self.parse_login)
 
     def parse_login(self, response):
-        data, url, method = fill_login_form(response.url, response.body, self.login_user, self.login_password)
-        return FormRequest(url, formdata=dict(data), method=method, callback=start_crawl)
+        self.logger.info('parse_login')
+        with open('login_page.html', 'w') as fp:
+            fp.write(response.body)
+        img_src_relative = response.xpath('//*[@id="login"]/div/div[3]/a/img/@src').extract()
+        print "*******************"
+        print img_src_relative
+        base_url = get_base_url(response)
+        img_src = urljoin_rfc(base_url, img_src_relative)
+        print "img_src "  +img_src
+        try:
+            os.remove("captcha.png")
+        except:
+            pass
+        urllib.urlretrieve(img_src[0], "captcha.png")
+
+        captcha = raw_input("put captcha in mannully>")
+        print captcha 
 
     def start_crawl(self, response):
-        if "authentication failed" in response.body:
+        self.logger.info('start_crawl')
+        if "账号或密码错误" in response.body:
             self.logger.error("Login failed")
+
+        if "退出登录" in response.body:
+            self.logger.info('Success login')
+        content = response.body
+        with open('url.html', 'w') as fp:
+            fp.write(content)
         for url in self.start_urls:
             yield Request(url)
 

@@ -24,73 +24,35 @@ MONGODB_PORT = 27017
 MONGODB_DB = "ZBJ"
 MONGODB_COLLECTION = "zbjbaidu"
 
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'ZBJ (+http://www.yourdomain.com)'
-
-# Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS=32
-
-# Configure a delay for requests for the same website (default: 0)
-# See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
-# See also autothrottle settings and docs
-#LOG_LEVEL ="INFO"
 DOWNLOAD_DELAY=5
 #LOG_LEVEL = 'INFO'
-# The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN=16
-#CONCURRENT_REQUESTS_PER_IP=16
+HEADER = {
+    "Host": "www.zbj.com",
+    "Connection": "keep-alive",
+    "Cache-Control": "max-age=0",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Upgrade-Insecure-Requests": "1",
+    "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
+    "Accept-Encoding": "gzip, deflate, sdch",
+    "Accept-Language": "zh-CN,zh;q=0.8,en;q=0.6",
+    }
 
-# Disable cookies (enabled by default)
-#COOKIES_ENABLED=False
-
-# Disable Telnet Console (enabled by default)
-#TELNETCONSOLE_ENABLED=False
-
-# Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
-
-# Enable or disable spider middlewares
-# See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'ZBJ.middlewares.MyCustomSpiderMiddleware': 543,
-#}
-
-# Enable or disable downloader middlewares
-# See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'ZBJ.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
-
-# Enable or disable extensions
-# See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
-#    'scrapy.telnet.TelnetConsole': None,
-#}
-
-# Configure item pipelines
-# See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'ZBJ.pipelines.SomePipeline': 300,
-#}
-
-# Enable and configure the AutoThrottle extension (disabled by default)
-# See http://doc.scrapy.org/en/latest/topics/autothrottle.html
-# NOTE: AutoThrottle will honour the standard settings for concurrency and delay
-#AUTOTHROTTLE_ENABLED=True
-# The initial download delay
-#AUTOTHROTTLE_START_DELAY=5
-# The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY=60
-# Enable showing throttling stats for every response received:
-#AUTOTHROTTLE_DEBUG=False
-
-# Enable and configure HTTP caching (disabled by default)
-# See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-#HTTPCACHE_ENABLED=True
-#HTTPCACHE_EXPIRATION_SECS=0
-#HTTPCACHE_DIR='httpcache'
-#HTTPCACHE_IGNORE_HTTP_CODES=[]
-#HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
+COOKIES = {
+    #'uniqid': r'93168344e1d25c42d19ea53158f39feb',  #过期时间，浏览会话结束时
+    '_uq': r'75888216c3f0ce8edf087e3f91ab342e',
+    'defaultShowService': r'1',
+    'userkey': r'm7frgZbJCQdj8%2BgYREGoA6q0Of9bMnqZ3HKLF8Mm33YwuuHKCKiBq%2F6uGeWZUmj%2BGOgwrGHCUaS4wwxgbonqzLld4jellKBD2ps3d%2BO9BxODfjvQyjn7U8AyoOt6m2qB5oKDg2NAujOdUFZ%2BhUkltjQviCjur9RYYzxcygOiaPUNoh4mnXxpshYYCZxFs%2Bb1yzpUZAbxsmhK0sndLszizyMHVdBaMmoErFeo7guX7SuD%2F8f8RlplojHQZ65%2Frvsg',
+    'userid': r'12489963',
+    'nickname': r'Wilna',
+    'brandname': r'Wilna',
+    '_uv': r'11',
+    'viewed_task': r'12489963%3A6739168%2C6736033%2C6734875',
+    '_ga': r'GA1.2.281368141.1451351506',
+    'Hm_lvt_a9be76f51f7880c755391d2e0ff3e4f8': r'1451351505',
+    #'Hm_lpvt_a9be76f51f7880c755391d2e0ff3e4f8': r'1451391421',
+    '__utma': r'168466538.281368141.1451351506.1451384045.1451391421.6',
+    '__utmb': r'168466538.1.10.1451391421',
+    #'__utmc': r'168466538',
+    '__utmz': r'168466538.1451375989.4.2.utmcsr=zbj.com|utmccn=(referral)|utmcmd=referral|utmcct=/; _ga=GA1.3.281368141.1451351506',
+    #'footerBarStateTask': r'0',
+    }

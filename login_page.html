@@ -1,0 +1,219 @@
+            
+    
+                
+    
+
+    
+
+
+
+    
+    <!DOCTYPE html>
+    <html>
+        <head autoConcat="1">
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+            <meta name="renderer" content="webkit" />
+            <meta http-equiv="Cache-Control" content="no-transform " />
+            <title>用户登录-猪八戒网</title>
+            <meta name="keywords" content="">
+            <meta name="description" content="">
+            
+<meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0,minimal-ui">
+
+            
+<link rel="shortcut icon" href="https://login.zbj.com/rake/static/login/common/img/favicon.ico" type="image/x-icon"/>
+
+            
+                            
+        <link rel="stylesheet" type="text/css" href="https://login.zbj.com/rake/??/static/login-common/global/global_b376b51.css"/><link rel="stylesheet" type="text/css" href="https://login.zbj.com/rake/??/static/login/widget/common/login-register/header/header_6be5d4c.css,/static/login/widget/login/login-header/login-header_0a67183.css,/static/login/widget/login/login-by-account-top/login-by-account-top_4bfe4d0.css,/static/login/widget/common/verify-code/verify-code_55fb5ca.css,/static/login/widget/login/login-form/login-password-form/login-password-form_47df9a1.css,/static/login/widget/login/login-form/login-mobile-form/login-mobile-form_f05cb56.css,/static/login/widget/login/login-form/login-form_91f5eca.css,/static/login/widget/common/login-register/authorize-login/authorize-login_266fc5b.css,/static/login/widget/common/login-register/footer/footer_d050a3a.css"/><link rel="stylesheet" type="text/css" href="https://login.zbj.com/rake/??/static/login/common/common_a09dbca.css"/><link rel="stylesheet" type="text/css" href="https://login.zbj.com/rake/??/static/login/login/login_fee483f.css"/></head>
+
+        <body class="login-register-content">
+            
+<div class="header">
+<div class="zbj-grid">
+<div class="logo">
+<a href="http://www.zbj.com/" class="logo-img" title="猪八戒网"></a>
+<h1 class="login-title">欢迎登录</h1>
+</div>
+</div>
+</div>
+            
+<div class="content" title="">
+<div class="zbj-grid">
+<a href="http://zt.zbj.com/bgl/2015-12-8/zlcy.html"
+                   class="mask" title="" target="_blank" data-linkid="10015248"></a>
+<div class="box-warp">
+<div class="form-wrap">
+
+<div class="login-content-header">
+<h1 class="j-login-ways login-ways login-by-account" data-id="login-form-content">账号登录</h1>
+</div>
+<div class="j-login-content-item login-content-item login-form-content login-content-active">
+<ul class="clearfix zbj-tabs login-by-account-ways">
+<li class="login-by-account-item login-by-accountpassword"><a href="javascript:void(0)"><i class="icon-user-bd"></i><span class="login-by-item-title login-by-password">账号密码登录</span><span
+                class="login-ways-separate"></span></a></li>
+<li class=" login-by-account-item login-by-phone"><a href="javascript:void(0)"><i class="icon-phone"></i><span class="login-by-item-title">手机动态登录</span></a></li>
+</ul><div class="zbj-tabs-content">
+<div class="zbj-tabs-panel">
+<form id="login" class="login-form" action="/login/dologin/" method="post" data-type="json">
+<div class="j-login-by login-by-username login-by-active">
+<div class="zbj-form-item zbj-form-username">
+<input id="vid" type="hidden" name="vid" value=""/>
+<input id="username" name="username" class="zbj-input j-zbj-form-username" type="text"
+                   placeholder="手机号/邮箱/用户名" tabindex="1">
+<input id="kid" type="hidden" name="kid" value="">
+<input id="vf_id" type="hidden" name="vf_id" value="">
+<input id="key" type="hidden" name="key" value="">
+</div>
+<div class="zbj-form-item zbj-form-password">
+<input id="password" name="password" class="zbj-input" type="password" placeholder="密码" tabindex="2">
+</div>
+<div class="zbj-form-item verify-module j-catcha-div" data-tabindex="3">
+</div>
+<div class="zbj-form-item login-other-info">
+<label><input type="checkbox" name="cache" value="1" tabindex="4">
+<span>两周内自动登录</span></label>
+<a class="forget-password" href="/retrieve/index.html?mode=1">找回密码</a>
+</div>
+<div class="zbj-form-item login-form-button">
+<input type="hidden" name="fromurl" value=""/>
+<button class="zbj-btn zbj-btn-primary j-login-btn" tabindex="5">登&nbsp;录</button>
+</div>
+</div>
+</form></div>
+<div class="hide zbj-tabs-panel">
+<form id="login-mobile" class="login-form" action="/login/quickLogin/" method="post" data-type="json">
+<div class="j-login-by login-by-mobile">
+<div class="zbj-form-item">
+<input id="telephone" name="mobile" class="zbj-input" type="text" value="" placeholder="手机号" tabindex="6">
+</div>
+<div class="zbj-form-item verify-module j-catcha-div" data-tabindex="7">
+</div>
+<div class="zbj-form-item dynamic-code">
+<input id="dynamic-code" name="key" class="zbj-input" type="text" placeholder="动态码" tabindex="8">
+<a class="get-dynamic-code j-get-dynamic-code">获取动态码</a>
+</div>
+<div class="zbj-form-item login-form-button">
+<button class="zbj-btn zbj-btn-primary j-login-btn-mobile" tabindex="9">登&nbsp;录</button>
+</div>
+</div>
+</form></div>
+</div>
+</div>
+</div>
+<div class="login-other-ways">
+<div class="authorize-login">
+<p class="clearfix authorize-login-title">
+<span class="authorize-login-title-left">
+使用合作账号登录</span>
+<span class="authorize-login-title-right">
+<a class="authorize-link" href="/register/">注册新账号</a>
+</span>
+</p>
+<ul class="clearfix authorize-login-list">
+<li class="authorize-login-item">
+<a class="j-authorize-login-item qq-login " href="/oauth/redirect/act/QQ" title="QQ登录"></a>
+</li>
+<li class="authorize-login-item">
+<a class="j-authorize-login-item sina-login " href="/oauth/redirect/act/sina" title="微博登录"></a>
+</li>
+<li class="authorize-login-item">
+<a class="j-authorize-login-item taobao-login " href="/oauth/redirect/act/taobao" title="淘宝登录"></a>
+</li>
+</ul>
+</div></div>
+</div>
+</div>
+</div>
+
+            
+<div class="zbj-footer" >
+<div class="grid zbj-grid zbj-footer-bd">
+<div class="zbj-footer-sitelink">
+<a data-linkid="footer-about" rel="nofollow" href="http://www.zbj.com/about/index.html"
+               target="_blank">关于我们</a><span class="split">|</span>
+<a data-linkid="footer-contact" rel="nofollow" href="http://www.zbj.com/about/contactus.html"
+               target="_blank">联系方式</a><span class="split">|</span>
+<a data-linkid="footer-adhelp" rel="nofollow" href="http://zt.zbj.com/ztold/adhelp/" target="_blank">广告服务</a><span
+                    class="split">|</span>
+<a data-linkid="footer-news" href="http://news.zbj.com/" target="_blank">新闻中心</a><span
+                    class="split">|</span>
+<a data-linkid="footer-map" href="http://www.zbj.com/main/map/" target="_blank">网站地图</a><span
+                    class="split">|</span>
+<a data-linkid="footer-gszz" rel="nofollow" href="http://www.zbj.com/zizhi/gszz.html" target="_blank">公司资质</a><span
+                    class="split">|</span>
+<a data-linkid="footer-join" rel="nofollow" href="http://job.zbj.com/" target="_blank">加入我们</a><span
+                    class="split">|</span>
+<a data-linkid="footer-pay" rel="nofollow" href="http://www.zbj.com/about/payment.html"
+               target="_blank">支付方式</a><span class="split">|</span>
+<a data-linkid="footer-hz" rel="nofollow" href="http://zt.zbj.com/ztold/zbjhezuo/" target="_blank">我也要与猪八戒网合作</a><span
+                    class="split">|</span>
+<a data-linkid="footer-charlist" target="_blank"
+               href="http://search.zbj.com/charlist/index.html">热门服务</a><span class="split">|</span>
+<a data-linkid="footer-m" rel="nofollow" href="http://m.zbj.com/" target="_blank">猪八戒网移动版</a>
+</div>
+<p class="gray zbj-footer-copyright">
+Copyright 2005-2015zbj.com  版权所有<a rel="nofollow" href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">渝ICP备10202274-1号</a><a rel="nofollow" href="http://www.cqca.gov.cn/" target="_blank" rel="nofollow">渝B2-20080005</a>
+</p>
+<div class="zbj-footer-gov">
+<a data-linkid="footer-ebs"  href="http://www.cqgseb.cn/ztgsgl/WebMonitor/GUILayer/eImgMana/dztbInfo.aspx?sfdm=120090611153726046127" target="_blank" rel="nofollow">
+<img src="https://login.zbj.com/rake/static/login/widget/common/login-register/footer/img/ebs_f4a49dc.png" alt="市场监督管理局企业主体身份公示"><span class="item-txt">工商网监电子标识</span>
+</a>
+<a data-linkid="footer-xfz" rel="nofollow" href="http://www.cqgseb.cn/ztgsgl/WebSiteMonitoring/WebUI/XFWQ/Index.aspx?xh=19" target="_blank" rel="nofollow">
+<img src="https://login.zbj.com/rake/static/login/widget/common/login-register/footer/img/xfz_ad6bc96.jpg" alt="消费维权服务"><span class="item-txt">消费者维权服务站</span>
+</a>
+<a data-linkid="footer-cnnic" rel="nofollow" href="http://kxlogo.knet.cn/verifyseal.dll?sn=e13091311010042477ead0000000" target="_blank" rel="nofollow">
+<img src="https://login.zbj.com/rake/static/login/widget/common/login-register/footer/img/time_cnnic_f555083.jpg" width="128" height="47" alt="可信网站身份验证"><span
+                        class="item-txt">可信网站身份验证</span>
+</a>
+<a id="___szfw_logo___" rel="nofollow" href="https://credit.szfw.org/CX20150930011538030188.html"
+               target="_blank">
+<img src="https://login.zbj.com/rake/static/login/widget/common/login-register/footer/img/chengxin_4f87952.png" border="0" width="130" height="47">
+</a>
+</div>
+</div>
+</div>
+            
+                <script>
+    window.ZBJInfo = {
+        pageDomain: "zbj.com",
+        baseURI: "zbj.com",
+        newStaticLibURI: "https://login.zbj.com/rake",
+        rakeProject: true,
+        upFileUrl : "http://p7.zbjimg.com/",
+        t6Url: "http://t6.zbjimg.com",
+        t5Url: "https://login.zbj.com/v5style"
+
+                    ,searchCfg: {"witkey":{"placeholder":"","def_keyword":""},"service":{"placeholder":"\u5e74\u8d27\u5305\u88c5\u8bbe\u8ba1\u7279\u4ef7\uff0c\u4f01\u4e1a\u9001\u793c\u500d\u6709\u9762\u513f","def_keyword":"\u5e74\u8d27\u5305\u88c5"},"task":{"placeholder":"","def_keyword":""}}
+        
+            };
+</script>
+<script>
+    </script>
+
+
+
+
+    <script id="seajsnode" type="text/javascript" src="https://login.zbj.com/rake/??/static/login-common/lib/jquery/jquery171.js,static/login-common/lib/seajs/seajs/2.1.1/sea-debug.js,static/login-common/lib/seajs/seajs-combo/1.0.1/seajs-combo-debug.js,static/login-common/lib/seajs/seajs-style/1.0.0/seajs-style-debug.js,static/login-common/lib/seajs/seajs-text/1.0.3/seajs-text-debug.js"></script>
+
+<script src="https://login.zbj.com/rake/static/login-common/seajs-config_74de349.js"></script>
+    <script src="https://login.zbj.com/rake/static/login/seajs-config_b5a11f5.js"></script>
+            
+            
+<script>
+        window.ZBJInfo.currentPage = "login";
+        window.ZBJInfo.needCaptcha =1;
+    </script>
+
+        </body><script type="text/javascript" src="https://login.zbj.com/rake/??/static/login/widget/login/login-header/login-header_8a4a86f.js,/static/login/widget/login/login-by-account-top/login-by-account-top_c937396.js,/static/login/widget/common/verify-code/template/verify-code_33d04f6.js,/static/login/widget/common/verify-code/verify-code_3502e7f.js,/static/login/widget/login/login-form/template/login-dialog-mobile_5f5db68.js,/static/login/widget/login/login-form/src/dialog_4ba0f34.js,/static/login/widget/login/login-form/src/validator_9440eb8.js,/static/login/widget/login/login-form/login-form_aa976a8.js,/static/login/widget/common/login-register/authorize-login/authorize-login_71faeaf.js"></script><script type="text/javascript">!function(){seajs.use(["login:static/common/common.js","login:static/login/login.js"])}();</script>
+        
+        
+            <script src="https://login.zbj.com/v5style/t5s/common/js/count.js"></script>
+
+
+        
+
+        
+            </html>

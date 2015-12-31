@@ -25,8 +25,8 @@ class ZbjcrawlerSpider(CrawlSpider):
         #提取下一页链接
         Rule(LinkExtractor(allow=r'task.zhubajie.com/success/', restrict_xpaths=('//div[@class="pagination"]'),
                            process_value=process_value), callback='parse_start_url', follow=True),
-        Rule(LinkExtractor(allow=r'task.zhubajie.com/\d+', restrict_xpaths=('//div[@class="pagination"]')),
-                           callback='parse_10', follow=True),
+        #Rule(LinkExtractor(allow=r'task.zhubajie.com/\d+', restrict_xpaths=('//div[@class="pagination"]')),
+        #                   callback='parse_10', follow=True),
 
     ]
 
@@ -41,16 +41,21 @@ class ZbjcrawlerSpider(CrawlSpider):
     login_user = ''
     login_password = ''
 
-    def start_request(self):
+    def start_requests(self):
+        self.logger.info('start_requests')
         yield Request(self.login_url, self.parse_login)
 
     def parse_login(self, response):
+        self.logger.info('parse_login')
         data, url, method = fill_login_form(response.url, response.body, self.login_user, self.login_password)
-        return FormRequest(url, formdata=dict(data), method=method, callback=start_crawl)
+        return FormRequest(url, formdata=dict(data), method=method, callback=self.start_crawl)
 
     def start_crawl(self, response):
+        self.logger.info('start_crawl')
         if "authentication failed" in response.body:
             self.logger.error("Login failed")
+        if "Wilna" in response.body:
+            self.logger.info("Login success")
         for url in self.start_urls:
             yield Request(url)
 
@@ -69,7 +74,7 @@ class ZbjcrawlerSpider(CrawlSpider):
         urls = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/@href').extract()
         for url in urls:
             self.logger.info('Parse_0 '+ response.url)
-            yield Request(url)  #不用callback？
+            yield Request(url, callback=self.parse_10)  #不用callback？
         # titles = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/text()').extract()
         # urls = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/@href').extract()
         # contents = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/@href').extract()
@@ -100,17 +105,28 @@ class ZbjcrawlerSpider(CrawlSpider):
     #登录抓取
     def parse_10(self, response):
         self.logger.info('Parse_10 '+ response.url)
-        titles = response.xpath('//h1/text()').extract()
-        urls = response.url
-        contents = response.xpath('//p[@class="bidc"]/text()').re('-\s[^\n]*\\r')
+        item = ZBJItem()
+        item['url'] = response.url
+        if ( response.xpath('//h1/text()').extract()):
+            item['title'] = response.xpath('//h1/text()').extract()
+        else:
+            item['title'] = ""
+        if (response.xpath('//p[@class="bidc"]/text()').re('-\s[^\n]*\\r')):
+            item['content'] = response.xpath('//p[@class="bidc"]/text()').re('-\s[^\n]*\\r')
+        else:
+            item['content'] = ""
+        yield item
+        # titles = response.xpath('//h1/text()').extract()
+        # urls = response.url
+        # contents = response.xpath('//p[@class="bidc"]/text()').re('-\s[^\n]*\\r')
 
-        for title, url, content in zip(titles, urls, contents):
-            self.logger.info('Parse_10 '+ response.url)
-            item = ZBJItem()
-            item['title'] = title
-            item['url'] = url
-            item['content'] = content
-            yield item
+        # for title, url, content in zip(titles, urls, contents):
+        #     self.logger.info('Parse_10 '+ response.url)
+        #     item = ZBJItem()
+        #     item['title'] = title
+        #     item['url'] = url
+        #     item['content'] = content
+        #     yield item
 
     
 
