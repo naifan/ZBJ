@@ -37,22 +37,38 @@ HEADER = {
     "Accept-Language": "zh-CN,zh;q=0.8,en;q=0.6",
     }
 
-COOKIES = {
+# COOKIES = {
     #'uniqid': r'93168344e1d25c42d19ea53158f39feb',  #过期时间，浏览会话结束时
-    '_uq': r'75888216c3f0ce8edf087e3f91ab342e',
-    'defaultShowService': r'1',
-    'userkey': r'm7frgZbJCQdj8%2BgYREGoA6q0Of9bMnqZ3HKLF8Mm33YwuuHKCKiBq%2F6uGeWZUmj%2BGOgwrGHCUaS4wwxgbonqzLld4jellKBD2ps3d%2BO9BxODfjvQyjn7U8AyoOt6m2qB5oKDg2NAujOdUFZ%2BhUkltjQviCjur9RYYzxcygOiaPUNoh4mnXxpshYYCZxFs%2Bb1yzpUZAbxsmhK0sndLszizyMHVdBaMmoErFeo7guX7SuD%2F8f8RlplojHQZ65%2Frvsg',
-    'userid': r'12489963',
-    'nickname': r'Wilna',
-    'brandname': r'Wilna',
-    '_uv': r'11',
-    'viewed_task': r'12489963%3A6739168%2C6736033%2C6734875',
-    '_ga': r'GA1.2.281368141.1451351506',
-    'Hm_lvt_a9be76f51f7880c755391d2e0ff3e4f8': r'1451351505',
+    # '_uq': r'75888216c3f0ce8edf087e3f91ab342e',
+    # 'defaultShowService': r'1',
+    # 'userkey': r'm7frgZbJCQdj8%2BgYREGoA6q0Of9bMnqZ3HKLF8Mm33YwuuHKCKiBq%2F6uGeWZUmj%2BGOgwrGHCUaS4wwxgbonqzLld4jellKBD2ps3d%2BO9BxODfjvQyjn7U8AyoOt6m2qB5oKDg2NAujOdUFZ%2BhUkltjQviCjur9RYYzxcygOiaPUNoh4mnXxpshYYCZxFs%2Bb1yzpUZAbxsmhK0sndLszizyMHVdBaMmoErFeo7guX7SuD%2F8f8RlplojHQZ65%2Frvsg',
+    # 'userid': r'12489963',
+    # 'nickname': r'Wilna',
+    # 'brandname': r'Wilna',
+    # '_uv': r'11',
+    # 'viewed_task': r'12489963%3A6739168%2C6736033%2C6734875',
+    # '_ga': r'GA1.2.281368141.1451351506',
+    # 'Hm_lvt_a9be76f51f7880c755391d2e0ff3e4f8': r'1451351505',
     #'Hm_lpvt_a9be76f51f7880c755391d2e0ff3e4f8': r'1451391421',
-    '__utma': r'168466538.281368141.1451351506.1451384045.1451391421.6',
-    '__utmb': r'168466538.1.10.1451391421',
+    # '__utma': r'168466538.281368141.1451351506.1451384045.1451391421.6',
+    # '__utmb': r'168466538.1.10.1451391421',
     #'__utmc': r'168466538',
-    '__utmz': r'168466538.1451375989.4.2.utmcsr=zbj.com|utmccn=(referral)|utmcmd=referral|utmcct=/; _ga=GA1.3.281368141.1451351506',
+    # '__utmz': r'168466538.1451375989.4.2.utmcsr=zbj.com|utmccn=(referral)|utmcmd=referral|utmcct=/; _ga=GA1.3.281368141.1451351506',
     #'footerBarStateTask': r'0',
-    }
+    # }
+COOKIES = {
+    '__utma': r'168466538.1963172230.1451904720.1451958293.1451960956.5',
+	'__utmb': r'168466538.4.10.1451960956', 
+	'__utmz': r'168466538.1451904720.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)',
+	'_uq': r'd41d8cd98f00b204e9800998ecf8427e',
+	'_ga': r'GA1.2.1963172230.1451904720',
+	'_gat': r'1',
+	'__utmt': r'1',
+	'userkey': r'g9tptvxJk3be1qHB4NfJqqB5aB56INWLTaQKxAJIxaikzpfC64ynfd5zKe0vVPn1STkJ8cv1Zk81Qo4RKVk7EDGyyiTLXEHlI4YcgF0W11r1YFCBT18rew4tv2FfbzAsUqb%2FY4ZGKXTF0gfGaSA7w9%2BX%2BSPJerg4Skye88JP5oe0mpjZuHMubFa2h8oEx%2Fjx95K8mUn1uE4hWTauJ5ofRRFHLr4pcCQhn794%2BmWdchdjAvTlx8wmH7p%2B1EtT8PSdpmo%3D',
+	'userid': r'12489963',
+	'nickname': r'Wilna',
+	'brandname': r'Wilna',
+	'uniqid': r'd01ouwnbj9ujfnb',
+	'__utmc': r'168466538',
+	'webimMainPage': r'6r8u1vbzvpnn',
+	}

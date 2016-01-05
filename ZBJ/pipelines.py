@@ -13,7 +13,7 @@ import json
 import codecs
 from collections import OrderedDict
 
-import pymongo
+#import pymongo
 
 from scrapy.conf import settings
 from scrapy.exceptions import DropItem

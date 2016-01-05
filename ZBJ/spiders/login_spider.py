@@ -10,7 +10,8 @@ from ZBJ.settings import *
 class LoginSpiderSpider(CrawlSpider):
     name = 'login_spider'
     allowed_domains = ['zbj.com']
-    start_urls = ['http://task.zbj.com/success/?kw=%E7%99%BE%E5%BA%A6%E7%9F%A5%E9%81%93']
+    #start_urls = ['http://task.zbj.com/success/?kw=%E7%99%BE%E5%BA%A6%E7%9F%A5%E9%81%93']
+    start_urls = ['http://u.zbj.com/task/order']
 
     rules = (
         Rule(LinkExtractor(allow=r''),),
