@@ -24,10 +24,10 @@ MONGODB_PORT = 27017
 MONGODB_DB = "ZBJ"
 MONGODB_COLLECTION = "zbjbaidu"
 
-DOWNLOAD_DELAY=5
+DOWNLOAD_DELAY = 5
 #LOG_LEVEL = 'INFO'
 HEADER = {
-    "Host": "www.zbj.com",
+    "Host": "task.zbj.com",
     "Connection": "keep-alive",
     "Cache-Control": "max-age=0",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -57,18 +57,28 @@ HEADER = {
     #'footerBarStateTask': r'0',
     # }
 COOKIES = {
-    '__utma': r'168466538.1963172230.1451904720.1451958293.1451960956.5',
-	'__utmb': r'168466538.4.10.1451960956', 
+    '__utma': r'168466538.1963172230.1451904720.1451972889.1452001329.8',  #1
+	'__utmb': r'168466538.1.10.1452001329',   #2
 	'__utmz': r'168466538.1451904720.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)',
 	'_uq': r'd41d8cd98f00b204e9800998ecf8427e',
-	'_ga': r'GA1.2.1963172230.1451904720',
+	'_ga': r'GA1.3.1963172230.1451904720', #4
 	'_gat': r'1',
 	'__utmt': r'1',
+    '_ga': 'GA1.2.1963172230.1451904720', #two
 	'userkey': r'g9tptvxJk3be1qHB4NfJqqB5aB56INWLTaQKxAJIxaikzpfC64ynfd5zKe0vVPn1STkJ8cv1Zk81Qo4RKVk7EDGyyiTLXEHlI4YcgF0W11r1YFCBT18rew4tv2FfbzAsUqb%2FY4ZGKXTF0gfGaSA7w9%2BX%2BSPJerg4Skye88JP5oe0mpjZuHMubFa2h8oEx%2Fjx95K8mUn1uE4hWTauJ5ofRRFHLr4pcCQhn794%2BmWdchdjAvTlx8wmH7p%2B1EtT8PSdpmo%3D',
 	'userid': r'12489963',
 	'nickname': r'Wilna',
 	'brandname': r'Wilna',
-	'uniqid': r'd01ouwnbj9ujfnb',
+	'uniqid': r'add0f0994e4ce44c606011bec42e256b', #3
 	'__utmc': r'168466538',
-	'webimMainPage': r'6r8u1vbzvpnn',
+	#'webimMainPage': r'6r8u1vbzvpnn', 
+    #new
+    #'PHPSESSID': r'gd7369ufss4g5nrgcshatj9cf0',
+    #'defaultShow': r'2',
+    #'taskid': r'6746770',
+    '_analysis': r'a53bOOaaa0k%2FfyjvoqGY1o2hyAVLvKlUeb%2BAK0EmPwvjJnJzopfiqzU3KwQRno%2BXImfJPC1eg7bkpMwTj6F%2F3V5a2nR0qEBp',
+    'fvtime': r'8956fNKzGD7SQRclIibcvc8nXnLIUsW3zeJLtgW8brnBw6LaV8lz', 
 	}
+ #   PHPSESSID=gd7369ufss4g5nrgcshatj9cf0; defaultShow=2; taskid=6746770; _analysis=a53bOOaaa0k%2FfyjvoqGY1o2hyAVLvKlUeb%2BAK0EmPwvjJnJzopfiqzU3KwQRno%2BXImfJPC1eg7bkpMwTj6F%2F3V5a2nR0qEBp; fvtime=8956fNKzGD7SQRclIibcvc8nXnLIUsW3zeJLtgW8brnBw6LaV8lz; 
+ # _ga=GA1.3.1963172230.1451904720; __utma=168466538.1963172230.1451904720.1451972889.1452001329.8;
+ #  _ga=GA1.2.1963172230.1451904720;   fvtime=8956fNKzGD7SQRclIibcvc8nXnLIUsW3zeJLtgW8brnBw6LaV8lz

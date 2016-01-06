@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# 逻辑正确，然而task页面仍未实现登录
+
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
@@ -21,15 +23,15 @@ class ZbjcrawlerSpider(CrawlSpider):
     allowed_domains = ['zbj.com']
     start_urls = ['http://task.zbj.com/success/?kw=%E7%99%BE%E5%BA%A6%E7%9F%A5%E9%81%93']
 
-    #rules = [
+    rules = [
         #Rule(LinkExtractor(allow=r'Items/'), callback='parse_item', follow=True),
         #提取下一页链接
-    #    Rule(LinkExtractor(restrict_xpaths=('//div[@class="pagination"]'), process_value=process_value ), 
-    #                       callback='parse_start_url', follow=True),
+        Rule(LinkExtractor(restrict_xpaths=('//div[@class="pagination"]'), process_value=process_value ), 
+                           callback='parse_start_url', follow=True),
         #Rule(LinkExtractor(allow=r'task.zhubajie.com/\d+', restrict_xpaths=('//div[@class="pagination"]')),
         #                   callback='parse_10', follow=True),
 
-    #]
+    ]
 
     login_url = ['http://u.zbj.com/task/order',]
     # login_user = ''
@@ -64,32 +66,14 @@ class ZbjcrawlerSpider(CrawlSpider):
             # self.logger.error("Login failed")
         if "Wilna" in response.body:
             self.logger.info("Login success")
-        print response.meta['cookiejar']  # 输出0，cookiejar不起作用
+  
         for url in self.start_urls:
             print url
             yield Request(url, \
             headers = self.headers, \
-            #meta = {'cookiejar': response.meta['cookiejar'],\
-            cookies =self.cookies,\
-            #},\
-            callback = self.rule_parse   #替换rule
+            meta = {'cookiejar': response.meta['cookiejar'],\
+            },\
             )
-    
-    def rule_parse(self, response):
-        page_urls = response.xpath('//div[@class="pagination"]/ul/li/a/@href').extract()
-        
-        for url in page_urls:
-            print url
-            url = process_value(url)
-            print url
-            
-            yield Request(url,\
-                headers = self.headers,\
-                #meta = {'cookiejar': response.meta['cookiejar'],\
-                cookies =self.cookies, \
-                #},\
-                callback = self.parse_start_url   #抓取页面链接
-                )
 		
     def _log_page(self, response, filename):
         with open(filename, 'w') as f:
@@ -112,10 +96,9 @@ class ZbjcrawlerSpider(CrawlSpider):
         for url in urls:
             self.logger.info('Parse_0 '+ url)
             yield Request(url,\
-                    headers = self.headers,\
-                    #meta = {'cookiejar': response.meta['cookiejar'],\
-                    cookies =self.cookies, \
-                    #},\
+                   headers = self.headers,\
+                   meta = {'cookiejar': response.meta['cookiejar'],\
+                          },\
                    callback=self.parse_10
                    )  
             #不用callback？
