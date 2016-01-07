@@ -116,7 +116,8 @@ class ZbjcrawlerSpider(CrawlSpider):
                     #meta = {'cookiejar': response.meta['cookiejar'],\
                     cookies =self.cookies, \
                     #},\
-                   callback=self.parse_10
+                    #callback=self.parse_10  #
+                    callback = self.parse_page
                    )  
             #不用callback？
         # titles = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/text()').extract()
@@ -134,7 +135,18 @@ class ZbjcrawlerSpider(CrawlSpider):
         #     request = Request(content, callback = self.parse_10）
         #     request.meta['item'] = item
         #     yield request
-
+    def parse_page(self, response):
+        page_urls = response.xpath('//div[@class="pagination"]/ul/li/a')
+        for page_url in page_urls:
+            url_short = page_url.xpath('@href').extract()[0]
+            print "url_short: " + url_short
+            url = urljoin_rfc(get_base_url(response), url_short)
+            print "url: " + url
+            yield Request(url, \
+                headers = self.headers,\
+                cookies = self.cookies,\
+                callback = self.parse_10,
+                )
 
     #未登录抓取目标页面
     def parse_1(self, response):
@@ -149,8 +161,9 @@ class ZbjcrawlerSpider(CrawlSpider):
     #登录抓取
     def parse_10(self, response):
         self.logger.info('Parse_10 '+ response.url)
-        self.id = self.id + 1
-        self._log_page(response, "%d.html" % self.id)
+        #self.id = self.id + 1
+        #self._log_page(response, "%d.html" % self.id)
+        
         item = ZBJItem()
         item['url'] = response.url
         if ( response.xpath('//h1/text()').extract()):
