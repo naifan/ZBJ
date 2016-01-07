@@ -3,6 +3,8 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http import Request, FormRequest
+from scrapy.utils.url import urljoin_rfc
+from scrapy.utils.response import get_base_url
 
 from ZBJ.items import ZBJItem
 #from loginform import fill_login_form
