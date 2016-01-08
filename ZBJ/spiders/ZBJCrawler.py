@@ -74,10 +74,11 @@ class ZbjcrawlerSpider(CrawlSpider):
             #meta = {'cookiejar': response.meta['cookiejar'],\
             cookies =self.cookies,\
             #},\
-            callback = self.rule_parse   #替换rule
+            callback = self.parse_start_url   #替换rule,
+            #第一页没有抓取，更改start_urls的调用函数为parse_start_url
             )
     
-    def rule_parse(self, response):
+    def parse_start_url(self, response):
         page_urls = response.xpath('//div[@class="pagination"]/ul/li/a/@href').extract()
         
         for url in page_urls:
@@ -90,7 +91,7 @@ class ZbjcrawlerSpider(CrawlSpider):
                 #meta = {'cookiejar': response.meta['cookiejar'],\
                 cookies =self.cookies, \
                 #},\
-                callback = self.parse_start_url   #抓取页面链接
+                callback = self.parse_page_url   #抓取页面链接
                 )
 		
     def _log_page(self, response, filename):
@@ -108,8 +109,9 @@ class ZbjcrawlerSpider(CrawlSpider):
             print item
             yield item
 
-    def parse_start_url(self, response):
-        self._log_page(response, 'start_urls.html')
+    def parse_page_url(self, response):
+        self.id = self.id + 1
+        self._log_page(response, "%d.html" % self.id)
         urls = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/@href').extract()
         for url in urls:
             self.logger.info('Parse_0 '+ url)
@@ -138,9 +140,10 @@ class ZbjcrawlerSpider(CrawlSpider):
         #     request.meta['item'] = item
         #     yield request
     def parse_page(self, response):
-        page_urls = response.xpath('//div[@class="pagination"]/ul/li/a')
+        page_urls = response.xpath('//div[@class="pagination"]/ul/li/a/@href')
         for page_url in page_urls:
-            url_short = page_url.xpath('@href').extract()[0]
+            #url_short = page_url.xpath('@href').extract()[0]  #List index out of range: a中不全有/@href，超过10后有'...'
+            url_short = page_url.extract()[0]
             print "url_short: " + url_short
             url = urljoin_rfc(get_base_url(response), url_short)
             print "url: " + url
@@ -149,6 +152,12 @@ class ZbjcrawlerSpider(CrawlSpider):
                 cookies = self.cookies,\
                 callback = self.parse_10,
                 )
+        #通过循环实现
+        # nextLink = response.xpath('//div[@class="pagination"]/ul/li/a/')
+        # if nextLink.xpath('text()').extract()[0] == u'\xbb':
+            # nextLink = href
+            # print nextLink
+            # yield Request(callback = parse_page)
 
     #未登录抓取目标页面
     def parse_1(self, response):

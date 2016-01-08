@@ -30,13 +30,13 @@ class LoginSpiderSpider(CrawlSpider):
                               headers = self.headers, \
                               cookies =self.cookies, \
                               #callback = self.parse_item
-                              callback = self.parse_page,\
+                              callback = self.parse_item,\
                               )#jump to login page
 
     def parse_item(self, response):
-        content = response.body
-        with open('url.html', 'w') as fp:
-            fp.write(content)
+        # content = response.body
+        # with open('url.html', 'w') as fp:
+            # fp.write(content)
         item = ZBJItem()
         item['url'] = response.url
         if ( response.xpath('//h1/text()').extract()):
@@ -48,6 +48,16 @@ class LoginSpiderSpider(CrawlSpider):
         else:
             item['content'] = ""
         yield item
+        nextLink = response.xpath('//div[@class="pagination"]/ul/li/a')
+        if nextLink.xpath('text()').extract()[0] == u'\xbb':
+            nextLink = nextLink.xpath('@href').extract()[0]
+            nextLink = urljoin_rfc(get_base_url(response), nextLink)
+            print nextLink
+            yield Request(nextLink, \
+                headers = self.headers,\
+                cookies = self.cookies,\
+                callback = self.parse_item,
+                )       
     
     def parse_page(self, response):
         page_urls = response.xpath('//div[@class="pagination"]/ul/li/a')
