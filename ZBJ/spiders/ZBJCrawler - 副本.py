@@ -19,7 +19,7 @@ def process_value(v):
     return v
 
 class ZbjcrawlerSpider(CrawlSpider):
-    name = 'ZBJCrawler'
+    name = 'ZBJCrawler1'
     allowed_domains = ['zbj.com']
     start_urls = ['http://task.zbj.com/success/?kw=%E7%99%BE%E5%BA%A6%E7%9F%A5%E9%81%93']
 
@@ -62,8 +62,6 @@ class ZbjcrawlerSpider(CrawlSpider):
     def start_crawl(self, response):
         self._log_page(response, 'ZBJLogin.html')
         self.logger.info('start_crawl')
-        # if "authentication failed" in response.body:
-            # self.logger.error("Login failed")
         if "Wilna" in response.body:
             self.logger.info("Login success")
   
@@ -101,23 +99,6 @@ class ZbjcrawlerSpider(CrawlSpider):
                           },\
                    callback=self.parse_10
                    )  
-            #不用callback？
-        # titles = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/text()').extract()
-        # urls = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/@href').extract()
-        # contents = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/@href').extract()
-    
-        # for title, url, content in zip(titles, urls, contents):
-        #     self.logger.info('parse_0 '+ response.url)
-        #     item = ZBJItem()
-        #     item['title'] = title
-        #     item['url'] = url
-        #     #未登录
-        #     #request = Request(content, callback = self.parse_1)
-        #     #登录
-        #     request = Request(content, callback = self.parse_10）
-        #     request.meta['item'] = item
-        #     yield request
-
 
     #未登录抓取目标页面
     def parse_1(self, response):
@@ -145,17 +126,7 @@ class ZbjcrawlerSpider(CrawlSpider):
         else:
             item['content'] = ""
         yield item
-        # titles = response.xpath('//h1/text()').extract()
-        # urls = response.url
-        # contents = response.xpath('//p[@class="bidc"]/text()').re('-\s[^\n]*\\r')
 
-        # for title, url, content in zip(titles, urls, contents):
-        #     self.logger.info('Parse_10 '+ response.url)
-        #     item = ZBJItem()
-        #     item['title'] = title
-        #     item['url'] = url
-        #     item['content'] = content
-        #     yield item
 
     
 

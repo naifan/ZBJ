@@ -33,7 +33,8 @@ class ZbjcrawlerSpider(CrawlSpider):
 
     #]
 
-    login_url = ['http://u.zbj.com/task/order',]
+    #login_url = ['http://u.zbj.com/task/order',]
+    login_url = ['http://task.zbj.com/4750773/',]
     # login_user = ''
     # login_password = ''
 
@@ -110,8 +111,8 @@ class ZbjcrawlerSpider(CrawlSpider):
             yield item
 
     def parse_page_url(self, response):
-        self.id = self.id + 1
-        self._log_page(response, "%d.html" % self.id)
+        #self.id = self.id + 1
+        #self._log_page(response, "%d.html" % self.id)
         urls = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/@href').extract()
         for url in urls:
             self.logger.info('Parse_0 '+ url)
@@ -123,35 +124,21 @@ class ZbjcrawlerSpider(CrawlSpider):
                     #callback=self.parse_10  #
                     callback = self.parse_page
                    )  
-            #不用callback？
-        # titles = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/text()').extract()
-        # urls = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/@href').extract()
-        # contents = response.xpath('//div[@class="success-task-list clearfix"]/ul/li[@class="task-item-title-li"]/a/@href').extract()
-    
-        # for title, url, content in zip(titles, urls, contents):
-        #     self.logger.info('parse_0 '+ response.url)
-        #     item = ZBJItem()
-        #     item['title'] = title
-        #     item['url'] = url
-        #     #未登录
-        #     #request = Request(content, callback = self.parse_1)
-        #     #登录
-        #     request = Request(content, callback = self.parse_10）
-        #     request.meta['item'] = item
-        #     yield request
+
     def parse_page(self, response):
         page_urls = response.xpath('//div[@class="pagination"]/ul/li/a/@href')
         for page_url in page_urls:
-            #url_short = page_url.xpath('@href').extract()[0]  #List index out of range: a中不全有/@href，超过10后有'...'
-            url_short = page_url.extract()[0]
-            print "url_short: " + url_short
-            url = urljoin_rfc(get_base_url(response), url_short)
-            print "url: " + url
-            yield Request(url, \
-                headers = self.headers,\
-                cookies = self.cookies,\
-                callback = self.parse_10,
-                )
+            if page_url.xpath('@href'):
+                #url_short = page_url.xpath('@href').extract()[0]  #List index out of range: a中不全有/@href，超过10后有'...'
+                url_short = page_url.extract()[0]
+                print "url_short: " + url_short
+                url = urljoin_rfc(get_base_url(response), url_short)
+                print "url: " + url
+                yield Request(url, \
+                    headers = self.headers,\
+                    cookies = self.cookies,\
+                    callback = self.parse_10,
+                    )
         #通过循环实现
         # nextLink = response.xpath('//div[@class="pagination"]/ul/li/a/')
         # if nextLink.xpath('text()').extract()[0] == u'\xbb':

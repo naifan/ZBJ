@@ -13,8 +13,8 @@ class LoginSpiderSpider(Spider):
     name = 'login_spider'
     allowed_domains = ['zbj.com']
     #start_urls = ['http://task.zbj.com/success/?kw=%E7%99%BE%E5%BA%A6%E7%9F%A5%E9%81%93']
-    #start_urls = ['http://u.zbj.com/task/order']
-    start_urls = ['http://task.zbj.com/4750773/']
+    start_urls = ['http://u.zbj.com/task/order']
+    # start_urls = ['http://task.zbj.com/4750773/']
 
     # rules = (
         # Rule(LinkExtractor(allow=r''), ),
@@ -29,8 +29,8 @@ class LoginSpiderSpider(Spider):
             yield FormRequest(url, meta = {'cookiejar': i}, \
                               headers = self.headers, \
                               cookies =self.cookies, \
-                              callback = self.parse_item
-                              # callback = self.parse_page \
+                              # callback = self.parse_item
+                              callback = self.parse_page \
                               )#jump to login page
 
     def parse_item(self, response):
@@ -45,6 +45,7 @@ class LoginSpiderSpider(Spider):
         else:
             item['content'] = ""
         yield item
+        print response.meta['cookiejar']
         #下一页 
         nextLink = response.xpath('//div[@class="pagination"]/ul/li/a')
         print nextLink.xpath('text()').extract()
@@ -56,25 +57,18 @@ class LoginSpiderSpider(Spider):
             print "nextLink 2: " + nextLink
             yield Request(nextLink, \
                 headers = self.headers,\
-                cookies = self.cookies,\
+                #cookies = self.cookies,\
+                meta = {'cookiejar': response.meta['cookiejar'],}, \
                 callback = self.parse_item,
                 )    
                
-      
+    def _log_page(self, response, filename):
+        with open(filename, 'w') as f:
+            f.write("%s\n%s\n%s\n" % (response.url, response.headers, response.body))      
     
     def parse_page(self, response):
-        page_urls = response.xpath('//div[@class="pagination"]/ul/li/a')
-        for page_url in page_urls:
-            if page_url.xpath('@href'):
-                url_short = page_url.xpath('@href').extract()[0]
-                print "url_short: " + url_short
-                url = urljoin_rfc(get_base_url(response), url_short)
-                print "url: " + url
-                yield Request(url, \
-                    headers = self.headers,\
-                    cookies = self.cookies,\
-                    callback = self.parse_item,
-                    )
+        self._log_page(response, 'login.html')
+
  
                
                     
