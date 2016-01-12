@@ -24,8 +24,9 @@ class ZbjcrawlerSpider(CrawlSpider):
     #start_urls = ['http://task.zbj.com/success/?kw=%E7%99%BE%E5%BA%A6%E7%9F%A5%E9%81%93']
     start_urls = ['http://search.zbj.com/t/?kw=%E7%99%BE%E5%BA%A6%E7%9F%A5%E9%81%93&type=']
 
-    #login_url = ['http://task.zbj.com/4750773/',]
-    login_url = ['http://u.zbj.com/task/order',]
+    login_url = ['http://task.zbj.com/4750773/',]
+    
+    #login_url = ['http://u.zbj.com/task/order',]
  
     def __init__(self, *a, **kwargs):
         super(ZbjcrawlerSpider, self).__init__(*a, **kwargs)   #overdide methods of derived class, in addition to new code. need to call Super method manully
@@ -52,7 +53,7 @@ class ZbjcrawlerSpider(CrawlSpider):
             yield Request(url, \
             headers = self.headers, \
             # meta = {'cookiejar': response.meta['cookiejar'],\
-            cookies =self.cookies,\
+            cookies = self.cookies,\
             #},\
             callback = self.parse_start_url   #替换rule,
             #第一页没有抓取，更改start_urls的调用函数为parse_start_url
@@ -62,7 +63,7 @@ class ZbjcrawlerSpider(CrawlSpider):
         self.logger.info('Parse_1 '+ response.url)
         tasks = response.xpath('//a[@class = "list-task-title"]/@href').extract()
         for task in tasks:
-            #self.logger.info('Parse_0 '+ task)
+            self.logger.info('Parse_task '+ task)
             yield Request(task,\
                     headers = self.headers,\
                     #meta = {'cookiejar': response.meta['cookiejar'],\

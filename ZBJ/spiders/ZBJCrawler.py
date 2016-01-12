@@ -56,7 +56,7 @@ class ZbjcrawlerSpider(CrawlSpider):
         for i, url in enumerate(self.login_url):
             yield FormRequest(url, meta = {'cookiejar': i}, \
                               headers = self.headers, \
-                              cookies =self.cookies,
+                              cookies = self.cookies,
                               callback = self.start_crawl)#jump to login page
 
 
@@ -71,12 +71,12 @@ class ZbjcrawlerSpider(CrawlSpider):
         for url in self.start_urls:
             print url
             yield Request(url, \
-            headers = self.headers, \
-            #meta = {'cookiejar': response.meta['cookiejar'],\
-            cookies =self.cookies,\
-            #},\
-            callback = self.parse_start_url   #替换rule,
-            #第一页没有抓取，更改start_urls的调用函数为parse_start_url
+                headers = self.headers, \
+                #meta = {'cookiejar': response.meta['cookiejar'],\
+                cookies = self.cookies,\
+                #},\
+                callback = self.parse_start_url   #替换rule,
+                #第一页没有抓取，更改start_urls的调用函数为parse_start_url
             )
     
     def parse_start_url(self, response):
@@ -90,7 +90,7 @@ class ZbjcrawlerSpider(CrawlSpider):
             yield Request(url,\
                 headers = self.headers,\
                 #meta = {'cookiejar': response.meta['cookiejar'],\
-                cookies =self.cookies, \
+                cookies = self.cookies, \
                 #},\
                 callback = self.parse_page_url   #抓取页面链接
                 )
@@ -119,7 +119,7 @@ class ZbjcrawlerSpider(CrawlSpider):
             yield Request(url,\
                     headers = self.headers,\
                     #meta = {'cookiejar': response.meta['cookiejar'],\
-                    cookies =self.cookies, \
+                    cookies = self.cookies, \
                     #},\
                     #callback=self.parse_10  #
                     callback = self.parse_page

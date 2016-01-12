@@ -13,8 +13,8 @@ class LoginSpiderSpider(Spider):
     name = 'login_spider'
     allowed_domains = ['zbj.com']
     #start_urls = ['http://task.zbj.com/success/?kw=%E7%99%BE%E5%BA%A6%E7%9F%A5%E9%81%93']
-    start_urls = ['http://u.zbj.com/task/order']
-    # start_urls = ['http://task.zbj.com/4750773/']
+    #start_urls = ['http://u.zbj.com/task/order']
+    start_urls = ['http://task.zbj.com/4750773/']
 
     # rules = (
         # Rule(LinkExtractor(allow=r''), ),
@@ -29,8 +29,8 @@ class LoginSpiderSpider(Spider):
             yield FormRequest(url, meta = {'cookiejar': i}, \
                               headers = self.headers, \
                               cookies =self.cookies, \
-                              # callback = self.parse_item
-                              callback = self.parse_page \
+                              callback = self.parse_item
+                              # callback = self.parse_page \
                               )#jump to login page
 
     def parse_item(self, response):
